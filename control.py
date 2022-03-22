@@ -2,21 +2,24 @@ import sys
 import view
 from PyQt6.QtWidgets import QApplication
 import view
+import model
 import requests
 import json
 
-class Controller:
+class control:
     def __init__(self):
-        self.view = view.View(self)
+        self.view = view.view(self)
+        self.model = model.model(self)
 
-    def reset(self) -> None:
-        pass
+    def check(self):
+        mResult = self.model.getResult();
+        self.view.setResult(mResult)
 
-    def refresh(self) -> None:
-        pass
+    def reset(self):
+        self.view.setResult("")
 
 if __name__ == '__main__':
     app = QApplication([])
-    c = Controller()
+    c = control()
     c.view.show()
     sys.exit(app.exec())

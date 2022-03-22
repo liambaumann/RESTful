@@ -2,10 +2,10 @@ from PyQt6.QtWidgets import *
 from PyQt6 import uic
 
 
-class View(QMainWindow):
-    def __init__(self, controller):
+class view(QMainWindow):
+    def __init__(self, control):
         """
-        init methode des Models
+        init methode des Views
         Hier wird das theme , window title, erste message gesetzt und der ausfuehren button verbunden
         """
 
@@ -17,8 +17,9 @@ class View(QMainWindow):
         #Statusbar message
         self.statusbar.showMessage("Please enter text to check")
 
-
         #listener connecten
-       # self.pb_.clicked.connect(controller.convert)     #ausfuehren button, Signal und Slot
-        #self.pb_refresh.clicked.connect(controller.refresh)
-        #self.cb_live.clicked.connect(controller.livedata)
+        self.pb_check.clicked.connect(control.check)
+        self.pb_reset.clicked.connect(control.reset)
+
+    def setResult(self, result):
+        self.text_result.setPlainText(result)
