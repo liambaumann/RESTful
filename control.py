@@ -1,10 +1,7 @@
 import sys
-import view
 from PyQt6.QtWidgets import QApplication
 import view
 import model
-import requests
-import json
 
 class control:
     def __init__(self):
@@ -12,8 +9,10 @@ class control:
         self.model = model.model(self)
 
     def check(self):
-        mResult = self.model.getResult();
-        self.view.setResult(mResult)
+        self.curInput = self.view.text_input.toPlainText()
+        if(self.curInput != ""):
+            mResult = self.model.getResult(self.curInput)
+            self.view.setResult(mResult)
 
     def reset(self):
         self.view.setResult("")
